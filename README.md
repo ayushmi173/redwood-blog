@@ -18,10 +18,16 @@ We use Yarn as our package manager. To get the dependencies installed, just do t
 yarn install
 ```
 
+### Migration
+Use
+```terminal
+ yarn redwood prisma migrate dev
+```
+
 ### Fire it up
 
 ```terminal
-yarn redwood dev
+yarn redwood dev or yarn rw dev
 ```
 
 Your browser should open automatically to `http://localhost:8910` to see the web app. Lambda functions run on `http://localhost:8911` and are also proxied to `http://localhost:8910/.redwood/functions/*`.
