@@ -41,7 +41,6 @@ const ContactForm: React.FC = () => {
     createContact({ variables: { input: data } })
   }
 
-  console.log(loading)
   return (
     <>
       <Form
