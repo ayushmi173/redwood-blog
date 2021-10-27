@@ -1,7 +1,7 @@
 import PostCell from 'src/components/Post/PostCell'
 
 type PostPageProps = {
-  id: Int
+  id: string
 }
 
 const PostPage = ({ id }: PostPageProps) => {

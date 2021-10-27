@@ -5,7 +5,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { QUERY } from 'src/components/Post/PostsCell'
 
 const DELETE_POST_MUTATION = gql`
-  mutation DeletePostMutation($id: Int!) {
+  mutation DeletePostMutation($id: String!) {
     deletePost(id: $id) {
       id
     }

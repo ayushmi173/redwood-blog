@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Post" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "anchor" TEXT,
     "body" TEXT NOT NULL,

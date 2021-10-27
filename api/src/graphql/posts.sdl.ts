@@ -1,6 +1,6 @@
 export const schema = gql`
   type Post {
-    id: Int!
+    id: String!
     title: String!
     anchor: String
     body: String!
@@ -9,7 +9,7 @@ export const schema = gql`
 
   type Query {
     posts: [Post!]! @requireAuth
-    post(id: Int!): Post @requireAuth
+    post(id: String!): Post @requireAuth
   }
 
   input CreatePostInput {
@@ -28,7 +28,7 @@ export const schema = gql`
 
   type Mutation {
     createPost(input: CreatePostInput!): Post! @requireAuth
-    updatePost(id: Int!, input: UpdatePostInput!): Post! @requireAuth
-    deletePost(id: Int!): Post! @requireAuth
+    updatePost(id: String!, input: UpdatePostInput!): Post! @requireAuth
+    deletePost(id: String!): Post! @requireAuth
   }
 `
