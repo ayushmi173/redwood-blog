@@ -29,7 +29,7 @@ const ContactForm: React.FC = () => {
   const formMethods = useForm()
   const [createContact, { loading, error }] = useMutation(CREATE_CONTACT, {
     onCompleted: () => {
-      toast.success('Contact Submitted')
+      toast.success('Thank you for your submission!')
       formMethods.reset()
     },
     onError: (error: ApolloError) => {
@@ -37,54 +37,65 @@ const ContactForm: React.FC = () => {
     },
   })
 
-  const handleSubmit = (data: Contact) => {
-    createContact({ variables: { input: data } })
+  const handleSubmit = async (data: Contact) => {
+    await createContact({ variables: { input: data } })
   }
 
-  console.log(loading)
   return (
     <>
-      <Form
-        formMethods={formMethods}
-        onSubmit={handleSubmit}
-        style={{
-          display: 'grid',
-        }}
-      >
-        <Label name="name" className="label" errorClassName="label error" />
-        <TextField
-          name="name"
-          className="input"
-          errorClassName="input error"
-          validation={{ required: true }}
-        />
-        <FieldError name="name" className="error-message" />
-
-        <Label name="email" className="label" errorClassName="label error" />
-        <TextField
-          name="email"
-          className="input"
-          errorClassName="input error"
-          validation={{
-            required: true,
-            pattern: /[^@]+@[^.]+..+/,
+      {!loading && !error ? (
+        <Form
+          formMethods={formMethods}
+          onSubmit={handleSubmit}
+          style={{
+            display: 'grid',
           }}
-        />
-        <FieldError name="email" className="error-message" />
+          config={{
+            mode: 'onBlur',
+          }}
+          error={error}
+        >
+          <Label name="name" className="label" errorClassName="label error" />
+          <TextField
+            name="name"
+            className="input"
+            errorClassName="input error"
+            validation={{ required: true }}
+          />
+          <FieldError name="name" className="error-message" />
 
-        <Label name="message" className="label" errorClassName="label error" />
-        <TextAreaField
-          name="message"
-          className="input"
-          errorClassName="input error"
-          validation={{ required: true }}
-        />
-        <FieldError name="message" className="error-message" />
+          <Label name="email" className="label" errorClassName="label error" />
+          <TextField
+            name="email"
+            className="input"
+            errorClassName="input error"
+            validation={{
+              required: true,
+              pattern: /[^@]+@[^.]+..+/,
+            }}
+          />
+          <FieldError name="email" className="error-message" />
 
-        <Submit disabled={loading} className="button">
-          Save
-        </Submit>
-      </Form>
+          <Label
+            name="message"
+            className="label"
+            errorClassName="label error"
+          />
+          <TextAreaField
+            name="message"
+            className="input"
+            errorClassName="input error"
+            validation={{ required: true }}
+          />
+          <FieldError name="message" className="error-message" />
+
+          <Submit disabled={loading} className="button">
+            Save
+          </Submit>
+        </Form>
+      ) : (
+        <h6>Loading.......</h6>
+      )}
       {error && (
         <h6
           style={{
