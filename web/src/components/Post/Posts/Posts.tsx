@@ -5,7 +5,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { QUERY } from 'src/components/Post/PostsCell'
 
 const DELETE_POST_MUTATION = gql`
-  mutation DeletePostMutation($id: String!) {
+  mutation DeletePostMutation($id: ID!) {
     deletePost(id: $id) {
       id
     }
@@ -22,9 +22,9 @@ const truncate = (text) => {
   return output
 }
 
-const jsonTruncate = (obj) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
+// const jsonTruncate = (obj) => {
+//   return truncate(JSON.stringify(obj, null, 2))
+// }
 
 const timeTag = (datetime) => {
   return (
@@ -34,9 +34,9 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+// const checkboxInputTag = (checked) => {
+//   return <input type="checkbox" checked={checked} disabled />
+// }
 
 const PostsList = ({ posts }) => {
   const [deletePost] = useMutation(DELETE_POST_MUTATION, {

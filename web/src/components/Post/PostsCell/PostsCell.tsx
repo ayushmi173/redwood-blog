@@ -22,12 +22,9 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => {
   return (
     <div className="rw-text-center">
-      {'No posts yet. '}
-      <Link
-        to={routes.newPost()}
-        className="rw-link"
-      >
-        {'Create one?'}
+      No posts yet.
+      <Link to={routes.newPost()} className="rw-link">
+        Create one?
       </Link>
     </div>
   )

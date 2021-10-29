@@ -3,7 +3,7 @@ import { toast } from '@redwoodjs/web/toast'
 import { Link, routes, navigate } from '@redwoodjs/router'
 
 const DELETE_POST_MUTATION = gql`
-  mutation DeletePostMutation($id: String!) {
+  mutation DeletePostMutation($id: ID!) {
     deletePost(id: $id) {
       id
     }
