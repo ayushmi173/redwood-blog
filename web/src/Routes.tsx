@@ -5,6 +5,8 @@ import HeaderLayout from './layouts/Header/Header'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/login" page={LoginPage} name="login" />
+      <Route path="/signup" page={SignupPage} name="signup" />
       <Set wrap={HeaderLayout}>
         <Set wrap={PostsLayout}>
           <Route path="/posts/new" page={PostNewPostPage} name="newPost" />
