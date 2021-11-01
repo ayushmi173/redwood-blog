@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@redwoodjs/api": "0.37.5",
-    "@redwoodjs/graphql-server": "0.37.5"
+    "@redwoodjs/graphql-server": "0.37.5",
+    "@types/bcryptjs": "^2.4.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1"
   }
 }

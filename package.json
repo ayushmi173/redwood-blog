@@ -8,7 +8,12 @@
     ]
   },
   "scripts": {
-    "start": "yarn rw dev"
+    "start": "yarn rw dev",
+    "start:studio": "cd ./api/db && npx prisma studio",
+    "lint": "yarn rw lint",
+    "type:check": "yarn rw type-check",
+    "deploy": "yarn rw deploy",
+    "migration": "yarn rw prisma migrate dev"
   },
   "devDependencies": {
     "@redwoodjs/core": "0.37.5"

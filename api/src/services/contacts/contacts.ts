@@ -5,8 +5,8 @@ export const contacts = () => {
   return db.contact.findMany()
 }
 
-export const createContact = ({ input }: CreateContactArgs) => {
-  return db.contact.create({
+export const createContact = async ({ input }: CreateContactArgs) => {
+  return await db.contact.create({
     data: input,
   })
 }

@@ -8,12 +8,30 @@ generator client {
   binaryTargets = "native"
 }
 
+model User {
+  id            String @id @unique @default(uuid())
+  name          String
+  email         String @unique
+  password      String
+  contactNumber String @db.VarChar(15)
+  address       String
+  age           Int
+  posts         Post[]
+
+  @@map(name: "user")
+}
+
 model Post {
-  id       String   @id @default(uuid())
-  title    String
-  anchor   String?
-  body     String
-  postedAt DateTime @default(now())
+  id        String   @id @default(uuid())
+  title     String
+  anchor    String?
+  body      String
+  postedAt  DateTime @default(now())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
 }
 
 model Contact {
