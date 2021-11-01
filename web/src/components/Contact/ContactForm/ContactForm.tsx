@@ -10,6 +10,7 @@ import { toast } from '@redwoodjs/web/toast'
 import { useMutation } from '@redwoodjs/web'
 import { useForm } from 'react-hook-form'
 import { ApolloError } from '@apollo/client'
+import { QUERY } from '../ContactsCell'
 
 type Contact = {
   name: string
@@ -35,6 +36,7 @@ const ContactForm: React.FC = () => {
     onError: (error: ApolloError) => {
       toast.error(error.message)
     },
+    refetchQueries: [{ query: QUERY }],
   })
 
   const handleSubmit = async (data: Contact) => {
@@ -47,49 +49,58 @@ const ContactForm: React.FC = () => {
         <Form
           formMethods={formMethods}
           onSubmit={handleSubmit}
-          style={{
-            display: 'grid',
-          }}
+          className="flex flex-col items-center"
           config={{
             mode: 'onBlur',
           }}
           error={error}
         >
-          <Label name="name" className="label" errorClassName="label error" />
+          <Label
+            name="Name"
+            className="label mt-3"
+            errorClassName="label error"
+          />
           <TextField
             name="name"
-            className="input"
-            errorClassName="input error"
+            className="input border-2 border-gray-900 w-3/6 py-2"
+            errorClassName="input error border-red-600 border-2 px-2 w-3/6 py-2"
             validation={{ required: true }}
           />
           <FieldError name="name" className="error-message" />
 
-          <Label name="email" className="label" errorClassName="label error" />
+          <Label
+            name="Email"
+            className="label mt-3"
+            errorClassName="label error"
+          />
           <TextField
             name="email"
-            className="input"
-            errorClassName="input error"
+            className="input border-2 border-gray-900 w-3/6 py-2"
+            errorClassName="input error border-red-600 border-2 w-3/6 py-2"
             validation={{
               required: true,
-              pattern: /[^@]+@[^.]+..+/,
+              pattern: /[^@]+@[^.]+\..+/,
             }}
           />
           <FieldError name="email" className="error-message" />
 
           <Label
-            name="message"
-            className="label"
+            name="Message"
+            className="label mt-3"
             errorClassName="label error"
           />
           <TextAreaField
             name="message"
-            className="input"
-            errorClassName="input error"
+            className="input border-2 border-gray-900 w-3/6 py-2 h-4/6"
+            errorClassName="input error border-red-600 border-2 px-2 w-3/6 py-2"
             validation={{ required: true }}
           />
           <FieldError name="message" className="error-message" />
 
-          <Submit disabled={loading} className="button">
+          <Submit
+            disabled={loading}
+            className="button bg-green-400 text-white mt-5 px-5 py-2 font-semibold rounded-md"
+          >
             Save
           </Submit>
         </Form>

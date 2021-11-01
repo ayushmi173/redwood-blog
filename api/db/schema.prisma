@@ -35,8 +35,9 @@ model Post {
 }
 
 model Contact {
-  id      String @id @default(uuid())
-  name    String
-  email   String
-  message String
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
 }

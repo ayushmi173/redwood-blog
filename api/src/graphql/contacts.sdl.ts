@@ -4,9 +4,15 @@ export const schema = gql`
     name: String!
     email: String!
     message: String!
+    createdAt: String
   }
 
+  type ContactPage {
+    contacts: [Contact!]!
+    count: Int!
+  }
   type Query {
+    contactPage(page: Int): ContactPage @skipAuth
     contacts: [Contact!]! @requireAuth
   }
 
