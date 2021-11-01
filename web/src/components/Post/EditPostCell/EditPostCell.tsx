@@ -8,7 +8,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import PostForm from 'src/components/Post/PostForm'
 
 export const QUERY = gql`
-  query EditPostById($id: String!) {
+  query EditPostById($id: ID!) {
     post: post(id: $id) {
       id
       title
@@ -19,7 +19,7 @@ export const QUERY = gql`
   }
 `
 const UPDATE_POST_MUTATION = gql`
-  mutation UpdatePostMutation($id: String!, $input: UpdatePostInput!) {
+  mutation UpdatePostMutation($id: ID!, $input: UpdatePostInput!) {
     updatePost(id: $id, input: $input) {
       id
       title
