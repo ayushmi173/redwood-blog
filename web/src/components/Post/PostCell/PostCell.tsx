@@ -5,7 +5,7 @@ import Post from 'src/components/Post/Post'
 
 export const QUERY = gql`
   query FindPostById($id: ID!) {
-    post: post(id: $id) {
+    post(id: $id) {
       id
       title
       anchor

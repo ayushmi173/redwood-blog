@@ -9,7 +9,7 @@ import PostForm from 'src/components/Post/PostForm'
 
 export const QUERY = gql`
   query EditPostById($id: ID!) {
-    post: post(id: $id) {
+    post(id: $id) {
       id
       title
       anchor

@@ -12,7 +12,7 @@ export const schema = gql`
     count: Int!
   }
   type Query {
-    contactPage(page: Int): ContactPage @skipAuth
+    contactPage(page: Int!): ContactPage @skipAuth
     contacts: [Contact!]! @requireAuth
   }
 

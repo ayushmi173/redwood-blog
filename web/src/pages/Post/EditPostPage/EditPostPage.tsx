@@ -5,7 +5,7 @@ type PostPageProps = {
 }
 
 const EditPostPage = ({ id }: PostPageProps) => {
-  return <EditPostCell id={id} />
+  return <EditPostCell id={id} post={undefined} />
 }
 
 export default EditPostPage

@@ -15,6 +15,7 @@ const validateContact = ({ input }: CreateContactArgs) => {
 }
 
 export const contactPage = async ({ page = 1 }: { page: number }) => {
+  console.log('calklkec contact page')
   const offset = (page - 1) * CONTACTS_PER_PAGE
   const contacts = await db.contact.findMany({
     take: CONTACTS_PER_PAGE,

@@ -7,10 +7,12 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 import { toast } from '@redwoodjs/web/toast'
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 import { useForm } from 'react-hook-form'
 import { ApolloError } from '@apollo/client'
-import { QUERY } from '../ContactsCell'
+import React from 'react'
+import ContactCell, { QUERY } from 'src/components/Contact/ContactCell'
+import { navigate, routes } from '@redwoodjs/router'
 
 type Contact = {
   name: string
@@ -26,21 +28,32 @@ const CREATE_CONTACT = gql`
   }
 `
 
-const ContactForm: React.FC = () => {
+type Props = {
+  page: number
+}
+
+const ContactForm: React.FC<Props> = ({ page }) => {
   const formMethods = useForm()
   const [createContact, { loading, error }] = useMutation(CREATE_CONTACT, {
     onCompleted: () => {
       toast.success('Thank you for your submission!')
       formMethods.reset()
+      navigate(routes.contact())
     },
     onError: (error: ApolloError) => {
       toast.error(error.message)
     },
-    refetchQueries: [{ query: QUERY }],
+  })
+
+  const { refetch } = useQuery(QUERY, {
+    variables: {
+      page: page || 1,
+    },
   })
 
   const handleSubmit = async (data: Contact) => {
     await createContact({ variables: { input: data } })
+    refetch()
   }
 
   return (
@@ -116,6 +129,7 @@ const ContactForm: React.FC = () => {
           {error.message}
         </h6>
       )}
+      <ContactCell page={page || 1} />
     </>
   )
 }
